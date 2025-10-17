@@ -55,15 +55,15 @@ public class SingleLinkedList {
         }
         System.out.println("null");
     }
-
-    
-    public int contador() { 
+ 
+    public int contador(int data) {
         int i=0;
-        Node current=head;
-
-        while (current!=null) {
-            i++; 
-            current=current.next;
+        Node current=head; 
+        while (current != null) {
+            if (current.data == data) {
+                i++;
+            }
+            current = current.next;
         }
         return i;
     }

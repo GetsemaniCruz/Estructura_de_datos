@@ -15,9 +15,13 @@ public class App {
         System.out.println("---------------------------");
         lista.printList();
         System.out.println("---------------------------");
-        int cantidad = lista.contador();
+        int valor = 2;
+        int veces = lista.contador(valor); 
 
-        System.out.println("los elementos son" + cantidad);
+        System.out.println("El valor a buscar es: "+valor);
+        System.out.println("Se repite "+veces);
+
+
 
     }
 }
