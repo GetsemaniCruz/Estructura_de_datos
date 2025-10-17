@@ -1,6 +1,7 @@
 public class DoubleLinkedList {
 
     Node head;
+    Node tail;
 
     public void add(int data){
         Node newNode=new Node(data);
@@ -41,20 +42,37 @@ public class DoubleLinkedList {
         if(head==null){//pregunta si la lista esta vacia
             return;
         }
-        if(head.data==data){//valida que el dato este en head
-            head=head.next;//elimina el primer nodo
-            return;
-        }else{
-            System.out.println("valor no encontrado");
-        }
         Node current=head;
-        while (current.next!=null && current.next.data!=data) {//recorrer hasta encontrar el valor
+        while (current!=null && current.data!=data) {//recorrer hasta encontrar el valor
             //estandar del recorrido && pregunta si es el valor que se busca
             current=current.next;
         }
-
-        current.next=current.next.next;//asignamos el nodo siguiente al siguiente
+        if (current==null) {
+            return;
+        }
+        if (current==head) {
+            head=head.next;
+            if (head!=null) {
+                head.prev =null; 
+            } else {
+                tail=null;
+            }
+            return;
+        }
+        if (current.next==null) { 
+            tail=current.prev;
+            if (tail!=null) {
+                tail.next=null;
+            }
+            current.prev=null;
+            return; 
+        }
+        current.prev.next=current.next;
+        current.next.prev=current.prev;
+        current.next=null;
+        current.prev=null;
+        return;
+        
     }
-
 
 }
