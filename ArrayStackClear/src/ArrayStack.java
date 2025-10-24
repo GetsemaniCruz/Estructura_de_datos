@@ -45,9 +45,9 @@ public class ArrayStack<T> implements IStack<T>{
     @Override
     public void clear() {
         for (int i = 0; i < this.top; i++) {
-            data[i] = null;
+            data[i]=null;
         }
-        this.top = 0;
+        this.top=0;
     }
 
     @Override
