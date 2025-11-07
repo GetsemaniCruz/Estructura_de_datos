@@ -47,6 +47,36 @@ public class SingleLinkedList {
         current.next=current.next.next;//asignamos el nodo siguiente al siguiente
     }
 
+    public int size() {
+        int count = 0;
+        Node current = head;
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
+    }
+
+    public JobCustom removeLast() {
+        if (head == null) {
+            return null;
+        }
+
+        if (head.next == null) {
+            JobCustom data = head.data;
+            head = null; 
+            return data;
+        }
+        Node current = head;
+        while (current.next.next != null) {
+            current = current.next;
+        }
+        JobCustom data = current.next.data; 
+        current.next = null; 
+        
+        return data;
+    }
+
     public void printList(){
         Node current=head;
         while (current!=null) {

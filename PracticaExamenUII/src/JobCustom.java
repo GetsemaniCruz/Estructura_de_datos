@@ -23,10 +23,5 @@ public class JobCustom {
     public String toString() {
         return "JobCustom [id=" + id + "]";
     }
-
-    
-
-
-
     
 }

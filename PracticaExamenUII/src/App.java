@@ -19,7 +19,8 @@ public class App {
                 queue.offer(job);
             }else if(cmd.equals("PROCESS")){
                 System.out.println("Dame la cantidad a procesar: ");
-                int num= sc.nextInt(); //
+                int num= sc.nextInt();
+                sc.nextLine();
                 int cont=0;
                 //se va a recorrer mientras no este vacia y mientras el contador sea menor que el numero de prosamiento
                 while(!queue.isEmpty() && cont<num){
@@ -34,6 +35,40 @@ public class App {
                     list.add(stack.pop()); //se ingresa el elemento que sacamos de la stack a la lista
                 }
 
+            }else if(cmd.equals("ROLLBACK")){
+                System.out.println("Dame la cantidad de trabajos a revertir (m): ");
+                
+                int m = sc.nextInt();
+                sc.nextLine(); 
+                
+                int trabajosMaximos = list.size();
+                int aRevertir;
+    
+                if (m > trabajosMaximos) {
+                    aRevertir = trabajosMaximos;
+                } else {
+                    aRevertir = m;
+                }
+
+                int trabajosRevertidos = 0;
+                ArrayStack<JobCustom> tempStack = new ArrayStack<>(); 
+                for (int i = 0; i < aRevertir; i++) {
+                    JobCustom job = (JobCustom) list.removeLast();
+                    if (job != null) {
+                        tempStack.push(job);
+                        trabajosRevertidos++;
+                    }
+                }
+                ArrayStack<JobCustom> queueStack = new ArrayStack<>();
+                while (!queue.isEmpty()) {
+                    queueStack.push((JobCustom) queue.poll());
+                }
+                while (!tempStack.isEmpty()) {
+                    queue.offer(tempStack.pop()); 
+                }
+                while (!queueStack.isEmpty()) {
+                    queue.offer(queueStack.pop());
+                }
             }else if(cmd.equals("PRINT")){
                 printData(queue, stack,list);
 

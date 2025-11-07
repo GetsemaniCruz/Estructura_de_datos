@@ -92,6 +92,12 @@ public class ArrayQueue <T> implements IQueue<Object>{
         return size;
     }
 
+    @Override
+    public void reverse() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'reverse'");
+    }
+
 
 
 }
